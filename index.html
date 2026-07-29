@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Plan de Mejora Continua 2026 · Seguimiento a Hallazgos</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600;700;800&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<link href="css/styles.css" rel="stylesheet"/></head>
+<body>
+<div class="topbar">
+<div class="topbar-inner">
+<div>
+<div class="brand-eyebrow">UT-GGC-F-09 · Macromedcoop</div>
+<div class="brand-title">Plan de Mejora Continua 2026</div>
+<div class="brand-sub">Seguimiento a hallazgos de auditorías de calidad por establecimiento</div>
+</div>
+<div>
+<div class="file-controls">
+<input accept=".xlsx,.xlsm" id="fileInput" style="display:none" type="file"/>
+<button class="file-btn" id="loadBtn">Cargar nuevo Excel</button>
+<span id="fileName">Archivo base: UT-GGC-F-09 (2026)</span>
+</div>
+<div class="file-status" id="fileStatus"></div>
+</div>
+</div>
+</div>
+<div class="wrap">
+<div class="filters" id="filters">
+<div class="filter-group"><label>Establecimiento</label><select id="f_establecimiento"><option value="">Todos</option></select></div>
+<div class="filter-group"><label>Ente Auditor</label><select id="f_ente"><option value="">Todos</option></select></div>
+<div class="filter-group"><label>Subcomponente</label><select id="f_sub"><option value="">Todos</option></select></div>
+<div class="filter-group"><label>Estado</label><select id="f_estado"><option value="">Todos</option></select></div>
+<div class="filter-group"><label>Plazo</label><select id="f_plazo"><option value="">Todos</option></select></div>
+<div class="filter-group"><label>Mes</label><select id="f_mes"><option value="">Todos</option></select></div>
+<button class="filter-clear" id="clearFilters">Limpiar filtros</button>
+<div class="filter-count" id="filterCount"></div>
+</div>
+<div class="kpi-row" id="kpiRow"></div>
+<div class="pulse">
+<div class="pulse-head">
+<h3>Distribución de estado — pulso general</h3>
+<div class="pulse-legend" id="pulseLegend"></div>
+</div>
+<div class="pulse-bar" id="pulseBar"></div>
+</div>
+<div class="grid-2">
+<div class="panel">
+<h3>Tendencia mensual — abiertos vs. cerrados</h3>
+<div class="chart-box tall"><canvas id="chartTrend"></canvas></div>
+</div>
+<div class="panel">
+<h3>Distribución por estado</h3>
+<div class="chart-box tall"><canvas id="chartEstado"></canvas></div>
+</div>
+</div>
+<div class="grid-3">
+<div class="panel">
+<h3>Top establecimientos — hallazgos abiertos</h3>
+<div class="chart-box"><canvas id="chartEstablecimiento"></canvas></div>
+</div>
+<div class="panel">
+<h3>Top subcomponentes / áreas</h3>
+<div class="chart-box"><canvas id="chartSubcomponente"></canvas></div>
+</div>
+<div class="panel">
+<h3>Distribución por plazo</h3>
+<div class="chart-box"><canvas id="chartPlazo"></canvas></div>
+</div>
+</div>
+<div class="table-panel">
+<h3>Detalle de hallazgos</h3>
+<div class="table-sub" id="tableSub">Clic en una fila para ver el detalle completo</div>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th>Establecimiento</th><th>Fecha auditoría</th><th>Subcomponente</th>
+<th>Hallazgo</th><th>Responsable</th><th>Fecha final</th><th>Estado</th><th>Días</th>
+</tr>
+</thead>
+<tbody id="tableBody"></tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="modal-bg" id="modalBg">
+<div class="modal">
+<button class="modal-close" id="modalClose">Cerrar ✕</button>
+<h2 id="m_establecimiento"></h2>
+<div class="modal-meta" id="m_meta"></div>
+<div class="modal-grid">
+<div class="field"><label>Hallazgo</label><div id="m_hallazgo"></div></div>
+<div class="field"><label>Causa raíz</label><div id="m_causa"></div></div>
+<div class="field"><label>Acción de mejora (¿Qué?)</label><div id="m_que"></div></div>
+<div class="field"><label>Descripción (¿Cómo?)</label><div id="m_como"></div></div>
+<div class="field"><label>Responsable</label><div id="m_responsable"></div></div>
+<div class="field"><label>Indicador</label><div id="m_indicador"></div></div>
+<div class="field"><label>Evidencia</label><div id="m_evidencia"></div></div>
+<div class="field"><label>Observaciones</label><div id="m_obs"></div></div>
+</div>
+</div>
+</div>
+
+<script src="js/app.js"></script></body>
+</html>
